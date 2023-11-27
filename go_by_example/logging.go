@@ -38,3 +38,15 @@ func main() {
 
 	myslog.Info("hello again", "key", "val", "age", 25)
 }
+
+/*
+electornic data processing (unit1)
+logical vs physical file (unit 1)
+databse vs file system (unit 2)
+ER diagram (unit 3)
+realtionship (unit 3)
+SQL , select , from (unit 4)
+entity set (unitunit 4)
+intregrity constraints ( unit 5)
+Third Normal form (3NF) vs Boyce-Codd Normal Form (BCNF) (unit 5)
+*/
