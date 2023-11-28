@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -42,12 +43,24 @@ func main() {
 	// @Failure      404  {object}  httputil.HTTPError
 	// @Failure      500  {object}  httputil.HTTPError
 	// @Router       /hello [get]
-	e.GET("/hello", hello)
+	e.GET("/hello", helloHandler("hello world", 01))
+
+	// group
+	group1 := e.Group("/g1")
+
+	group1.GET("/root", helloHandler("root-g1", 36))
+	group1.GET("/root-2", helloHandler("r2-g1", 03))
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
 // Handler
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello!")
+// func hello(text string, c echo.Context) error {
+// 	return c.String(http.StatusOK, text)
+// }
+
+func helloHandler(text string, someNumber int) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return c.String(http.StatusOK, text+" --- "+strconv.Itoa(someNumber))
+	}
 }
